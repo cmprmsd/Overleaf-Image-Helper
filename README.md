@@ -5,7 +5,7 @@
 Overleaf currently does allow you to upload images only with their upload button.
 
 The purpose of this project is to provide a convenient way to insert images into Overleaf without menus by just using `ctrl+v`.  
-I wrote this as Tampermonkey script for Chrome/Chromium. The script will create an asset folder in your root folder and reference images in as LaTeX figures with captions, which you can directly edit after pasting the image.
+I wrote this as Tampermonkey script for Chrome/Chromium and Firefox. The script will create an asset folder in your project root folder and reference images in as LaTeX figures with captions, which you can directly edit after pasting the image.
 
 ## Demo
 ![demo](paste-from-clipboard.gif)
