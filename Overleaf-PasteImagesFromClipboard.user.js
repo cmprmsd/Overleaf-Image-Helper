@@ -104,7 +104,7 @@ document.querySelector('.ace_editor').addEventListener('paste', function(e){
                 var reader = new FileReader();
                 reader.readAsBinaryString(imageBlob);
                 reader.onloadend = function () {
-                    var  hash = CryptoJS.MD5(reader.result).toString().substring(0,8);
+                    var  hash = CryptoJS.SHA256(reader.result).toString().substring(0,8);
                     console.log("Uploading image...")
                     uploadImage(imageBlob,hash);
                     _ide.editorManager.$scope.editor.sharejs_doc.ace.insert("\\begin{figure}[h!]\n\
