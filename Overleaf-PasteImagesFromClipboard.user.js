@@ -110,6 +110,7 @@ document.querySelector('.ace_editor').addEventListener('paste', function(e){
                     _ide.editorManager.$scope.editor.sharejs_doc.ace.insert("\\begin{figure}[h!]\n\
 \t\\centering\n\
 \t\\includegraphics[width=0.66\\textwidth]{assets/" + hash + ".png}\n\
+\t\\label{fig:" + hash + "}\n\
 \t\\caption{Caption}\n\
 \\end{figure}"
                                                                            );
