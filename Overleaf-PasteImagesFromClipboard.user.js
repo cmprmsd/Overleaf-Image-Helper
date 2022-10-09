@@ -111,9 +111,10 @@ document.querySelector('.ace_editor').addEventListener('paste', function(e){
 \t\\centering\n\
 \t\\includegraphics[width=0.66\\textwidth]{assets/" + hash + ".png}\n\
 \t\\caption{Caption}\n\
+\t\\label{fig:_" + hash + "}\n\
 \\end{figure}"
                                                                            );
-                    _ide.editorManager.$scope.editor.sharejs_doc.ace.selection.moveCursorBy(-1,1);
+                    _ide.editorManager.$scope.editor.sharejs_doc.ace.selection.moveCursorBy(-2,1);
                     _ide.editorManager.$scope.editor.sharejs_doc.ace.selection.selectWordRight()
                 };
             }
