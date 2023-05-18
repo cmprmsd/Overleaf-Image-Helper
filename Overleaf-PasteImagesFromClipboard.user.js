@@ -43,7 +43,13 @@ function uploadImage(imageBlob,hash){
     try{
         var xhr = new XMLHttpRequest();
         var url = document.location.pathname + "/upload?folder_id=" + _ide.fileTreeManager.findEntityByPath("assets").id + "&_csrf=" + csrfToken;
+        console.log("CSRF Token: ", csrfToken);
+        console.log(url);
         let formData = new FormData();
+        // Add these extra fields to prevent file name reading error on overleaf side
+        formData.append("relativePath", null);
+        formData.append("name", hash + ".png");
+        formData.append("type", "image/png");
         formData.append("qqfile", imageBlob, hash + ".png");
         xhr.open("POST", url, true);
         //xhr.setRequestHeader("Content-Type", "application/json");
