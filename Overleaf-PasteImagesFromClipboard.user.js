@@ -94,7 +94,8 @@ function checkAndCreateAssetsFolder(){
 })();
 
 // Listen for paste events
-document.querySelector('.ace_editor').addEventListener('paste', function(e){
+document.querySelector('.editor').addEventListener('paste', function(e){
+    console.log("I have seen paste")
     try {
         // Handle the event
         retrieveImageFromClipboardAsBlob(e, function(imageBlob){
@@ -104,17 +105,19 @@ document.querySelector('.ace_editor').addEventListener('paste', function(e){
                 var reader = new FileReader();
                 reader.readAsBinaryString(imageBlob);
                 reader.onloadend = function () {
-                    var  hash = CryptoJS.SHA256(reader.result).toString().substring(0,8);
-                    console.log("Uploading image...")
-                    uploadImage(imageBlob,hash);
-                    _ide.editorManager.$scope.editor.sharejs_doc.ace.insert("\\begin{figure}[h!]\n\
+                    var hash = CryptoJS.SHA256(reader.result).toString().substring(0,8);
+                    const insertText = "\\begin{figure}[h!]\n\
 \t\\centering\n\
 \t\\includegraphics[width=0.66\\textwidth]{assets/" + hash + ".png}\n\
 \t\\caption{Caption}\n\
 \\end{figure}"
-                                                                           );
-                    _ide.editorManager.$scope.editor.sharejs_doc.ace.selection.moveCursorBy(-1,1);
-                    _ide.editorManager.$scope.editor.sharejs_doc.ace.selection.selectWordRight()
+                    console.log("Uploading image...")
+                    uploadImage(imageBlob,hash);
+                    const cursorPos = _ide.editorManager.$scope.editor.sharejs_doc.cm6.view.state.selection.ranges[0].from
+                    _ide.editorManager.$scope.editor.sharejs_doc.cm6.cmInsert(cursorPos, insertText);
+                    console.log(insertText.length);
+                    const endOfCaptionText = cursorPos + insertText.length - 14
+                    _ide.editorManager.$scope.editor.sharejs_doc.cm6.view.dispatch({selection: {head: endOfCaptionText - 7, anchor: endOfCaptionText}})
                 };
             }
         })
