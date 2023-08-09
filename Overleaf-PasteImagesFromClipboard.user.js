@@ -45,6 +45,9 @@ function uploadImage(imageBlob,hash){
         var url = document.location.pathname + "/upload?folder_id=" + _ide.fileTreeManager.findEntityByPath("assets").id + "&_csrf=" + csrfToken;
         let formData = new FormData();
         formData.append("qqfile", imageBlob, hash + ".png");
+        formData.append("relativePath", null);
+        formData.append("name", hash + ".png");
+        formData.append("type", "image/png");
         xhr.open("POST", url, true);
         //xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
