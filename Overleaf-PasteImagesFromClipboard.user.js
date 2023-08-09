@@ -98,7 +98,6 @@ function checkAndCreateAssetsFolder(){
 
 // Listen for paste events
 document.querySelector('.editor').addEventListener('paste', function(e){
-    console.log("I have seen paste")
     try {
         // Handle the event
         retrieveImageFromClipboardAsBlob(e, function(imageBlob){
@@ -118,7 +117,6 @@ document.querySelector('.editor').addEventListener('paste', function(e){
                     uploadImage(imageBlob,hash);
                     const cursorPos = _ide.editorManager.$scope.editor.sharejs_doc.cm6.view.state.selection.ranges[0].from
                     _ide.editorManager.$scope.editor.sharejs_doc.cm6.cmInsert(cursorPos, insertText);
-                    console.log(insertText.length);
                     const endOfCaptionText = cursorPos + insertText.length - 14
                     _ide.editorManager.$scope.editor.sharejs_doc.cm6.view.dispatch({selection: {head: endOfCaptionText - 7, anchor: endOfCaptionText}})
                 };
