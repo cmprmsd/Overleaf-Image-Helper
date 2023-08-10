@@ -84,10 +84,8 @@ function checkAndCreateAssetsFolder(){
         // poll until editor is loaded
         const retry = setInterval(() => {
             console.log("Polling...")
-            if (window._debug_editors === undefined) return
+            if (!_ide.editorManager.$scope.editor.sharejs_doc.cm6) return
             clearInterval(retry)
-            // get current editor instance
-            const editor = window._debug_editors[window._debug_editors.length -1]
             // Create assets folder
             checkAndCreateAssetsFolder();
         }, 1000)
