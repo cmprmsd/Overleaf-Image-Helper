@@ -32,6 +32,7 @@ const getInsertText = (hash) => {
 	\\centering
 	\\includegraphics[width=0.66\\textwidth]{assets/${hash}.png}
 	\\caption{Caption}
+	\\label{fig:${hash}}
 \\end{figure}`;
 };
 

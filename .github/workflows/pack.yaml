@@ -1,0 +1,22 @@
+name: Pack Firefox Addon
+
+on:
+  push:
+    branches:
+      - master
+    paths: 
+      - 'paste.js'
+      - 'manifest.json'
+  
+jobs:
+  publish:
+    name: Publish to Firefox Addons
+    runs-on: ubuntu-latest
+    steps:
+      - uses: trmcnvn/firefox-addon@v1
+        with:
+          uuid: '{2e7913dc-5d8e-4b70-9208-f303830ca339}'
+          xpi: build/my-addon.xpi
+          manifest: manifest.json
+          api-key: ${{ secrets.FIREFOX_API_KEY }}
+          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
